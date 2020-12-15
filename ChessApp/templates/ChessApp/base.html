@@ -1,0 +1,53 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Chess{% endblock %}</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'ChessApp/css/common.css' %}">
+    </head>
+    <body>
+        {% block navbar %}
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <i class="fas fa-chess text-light p-1"></i>
+              <a class="navbar-brand" href="{% url 'chess_app_home' %}">Chess</a>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'chess_news' %}">News</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'load_data' %}">Add Games</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create_group' %}">Compare Players</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'group_stats' %}">Statistics</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+        </div>
+        {% endblock %}
+        <div class="container">
+        {% block content %}
+        {% endblock %}
+        </div>
+        <div class="bg-dark text-light fixed-bottom p-1">
+          <div>
+            Chess&nbsp;|&nbsp;AppBuilder9000
+          </div>
+        </div>
+    {% bootstrap_javascript jquery='full' %}
+    </body>
+</html>

@@ -1,0 +1,143 @@
+{% extends "ChessApp/base.html" %}
+{% load crispy_forms_tags %}
+{% crispy group_form group_form.helper %}
+{% crispy game_details game_details.helper %}
+
+{% block title %}Chess Site{% endblock %}
+
+{% block content %}
+<div class="bg-secondary text-light mt-4 p-1 pl-4 rounded-top">
+  <h4>Group Statistics</h4>
+</div>
+<div class="text-dark p-1 border border-top-0">
+  <form method="POST">
+    {% csrf_token %}
+    {{ group_form.title|as_crispy_field }}
+    <button type="submit" class="btn btn-primary mt-2 mb-2" formaction="group_stats">Details</button>
+  </form>
+</div>
+{% if group_db %}
+<div>
+  <div class="row bg-secondary mt-4 p-1 rounded-top">
+    <div class="col text-light">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-secondary d-flex justify-content-between align-items-center">Total Games: <span class="badge badge-light badge-pill">{{ player_1_stats.total_games }}</span> </li>
+        <li class="list-group-item bg-secondary d-flex justify-content-between align-items-center">
+          Wins:<span class="badge badge-light badge-pill">{{ player_1_stats.total_win}}</span>
+          Losses:<span class="badge badge-light badge-pill">{{ player_1_stats.total_loss }}</span>
+          Draws:<span class="badge badge-light badge-pill">{{ player_1_stats.total_draw }}</span>
+        </li>
+        <li class="list-group-item bg-secondary d-flex justify-content-between align-items-center">Win/Loss Ratio: <span class="badge badge-light badge-pill">{{ player_1_stats.win_ratio }}</span></li>
+        <li class="list-group-item bg-secondary d-flex justify-content-between align-items-center">Average Opponent Rating: <span class="badge badge-light badge-pill">{{ player_1_stats.avg_opp_rating }}</span></li>
+      </ul>
+    </div>
+    <div class="col bg-light text-secondary rounded-top">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-light d-flex justify-content-between align-items-center">Total Games: <span class="badge badge-secondary badge-pill">{{ player_2_stats.total_games }}</span> </li>
+        <li class="list-group-item bg-light d-flex justify-content-between align-items-center">
+          Wins:<span class="badge badge-secondary badge-pill">{{ player_2_stats.total_win}}</span>
+          Losses:<span class="badge badge-secondary badge-pill">{{ player_2_stats.total_loss }}</span>
+          Draws:<span class="badge badge-secondary badge-pill">{{ player_2_stats.total_draw }}</span>
+        </li>
+        <li class="list-group-item bg-light d-flex justify-content-between align-items-center">Win/Loss Ratio: <span class="badge badge-secondary badge-pill">{{ player_2_stats.win_ratio }}</span></li>
+        <li class="list-group-item bg-light d-flex justify-content-between align-items-center">Average Opponent Rating: <span class="badge badge-secondary badge-pill">{{ player_2_stats.avg_opp_rating }}</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row bg-secondary">
+    <div class="col colspan-2 bg-light text-secondary text-center">
+      <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning mt-2 mb-2 p-1" formaction="{{ group_form.title.value }}/group_edit/">Edit Group</button>
+      </form>
+    </div>
+  </div>
+  <div class="row bg-secondary text-light mt-4 p-1 rounded-top">
+    <div class="col bg-secondary text-light text-center">
+      <h4>{{ group_db.player1 }}</h4>
+        <div class="row bg-secondary text-light p-1">
+          <div class="col-2 bg-secondary text-light text-center"><h5>Date</h5></div>
+          <div class="col bg-secondary text-light text-center"><h5>Opponent</h5></div>
+          <div class="col-2 bg-secondary text-light text-center"><h5>Rating</h5></div>
+          <div class="col bg-secondary text-light text-center"><h5>Result</h5></div>
+          <div class="col bg-secondary text-light text-center"><h5>Details</h5></div>
+        </div>
+        {% for game in group_games1 %}
+        {% if game.white_player == group_db.player1 %}
+        <div class="row bg-secondary text-light p-1">
+          <div class="col-2 bg-secondary text-light text-center">{{ game.end_time }}</div>
+          <div class="col overflow-hidden bg-secondary text-light text-center">{{ game.black_player }}</div>
+          <div class="col-2 bg-secondary text-light text-center">{{ game.black_player_rating }}</div>
+          <div class="col bg-secondary text-light text-center">{{ game.white_player_result }}</div>
+          <div class="col bg-secondary">
+            <form method="post" novalidate>
+              {% csrf_token %}
+              <input type="hidden" name="game_id" value="{{ game.id }}">
+              <button type="submit" class="btn btn-light p-1" formaction="{{game.id}}/game_details/"><i class="fas fa-chess-king"></i></button>
+            </form>
+          </div>
+        </div>
+        {% elif game.black_player == group_db.player1 %}
+        <div class="row bg-secondary text-light p-1">
+          <div class="col-2 bg-secondary text-light text-center">{{ game.end_time }}</div>
+          <div class="col overflow-hidden bg-secondary text-light text-center">{{ game.white_player }}</div>
+          <div class="col-2 bg-secondary text-light text-center">{{ game.white_player_rating }}</div>
+          <div class="col bg-secondary text-light text-center">{{ game.black_player_result }}</div>
+          <div class="col bg-secondary">
+            <form method="post" novalidate>
+              {% csrf_token %}
+              <input type="hidden" name="game_id" value="{{ game.id }}">
+              <button type="submit" class="btn btn-light p-1" formaction="{{game.id}}/game_details/"><i class="fas fa-chess-king"></i></button>
+            </form>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="col bg-light text-secondary text-center rounded-top">
+      <h4>{{ group_db.player2 }}</h4>
+        <div class="row bg-light text-secondary p-1">
+          <div class="col-2 bg-light text-secondary text-center"><h5>Date</h5></div>
+          <div class="col bg-light text-secondary text-center"><h5>Opponent</h5></div>
+          <div class="col-2 bg-light text-secondary text-center"><h5>Rating</h5></div>
+          <div class="col bg-light text-secondary text-center"><h5>Result</h5></div>
+          <div class="col bg-light text-secondary text-center"><h5>Details</h5></div>
+        </div>
+        {% for game in group_games2 %}
+        {% if game.white_player == group_db.player2 %}
+        <div class="row bg-light text-secondary p-1">
+          <div class="col-2 bg-light text-secondary text-center">{{ game.end_time }}</div>
+          <div class="col overflow-hidden bg-light text-secondary text-center">{{ game.black_player }}</div>
+          <div class="col-2 bg-light text-secondary text-center">{{ game.black_player_rating }}</div>
+          <div class="col bg-light text-secondary text-center">{{ game.white_player_result }}</div>
+          <div class="col bg-light">
+            <form method="post" novalidate>
+              {% csrf_token %}
+              <input type="hidden" name="game_id" value="{{ game.id }}">
+              <button type="submit" class="btn btn-secondary p-1" formaction="{{game.id}}/game_details/"><i class="fas fa-chess-king"></i></button>
+            </form>
+          </div>
+        </div>
+        {% elif game.black_player == group_db.player2 %}
+        <div class="row bg-light text-secondary p-1">
+          <div class="col-2 bg-light text-secondary text-center">{{ game.end_time }}</div>
+          <div class="col overflow-hidden bg-light text-secondary text-center">{{ game.white_player }}</div>
+          <div class="col-2 bg-light text-secondary text-center">{{ game.white_player_rating }}</div>
+          <div class="col bg-light text-secondary text-center">{{ game.black_player_result }}</div>
+                    <div class="col bg-light">
+            <form method="post" novalidate>
+              {% csrf_token %}
+              <input type="hidden" name="game_id" value="{{ game.id }}">
+              <button type="submit" class="btn btn-secondary p-1" formaction="{{game.id}}/game_details/"><i class="fas fa-chess-king"></i></button>
+            </form>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

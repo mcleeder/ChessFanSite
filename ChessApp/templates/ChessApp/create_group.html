@@ -1,0 +1,18 @@
+{% extends "ChessApp/base.html" %}
+{% load crispy_forms_tags %}
+{% crispy new_group new_group.helper %}
+
+{% block title %}Create Group of Games{% endblock %}
+
+{% block content %}
+
+
+<div class="bg-secondary text-light mt-4 p-1 pl-4 rounded-top">
+  <h4>Create Comparison Group</h4>
+</div>
+<div class="text-dark p-1 border border-top-0">
+  {% crispy new_group %}
+  <span class="text-success">{{ msg }}</span>
+</div>
+
+{% endblock %}

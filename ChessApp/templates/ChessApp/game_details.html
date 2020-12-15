@@ -1,0 +1,63 @@
+{% extends "ChessApp/base.html" %}
+
+{% block title %}Chess Site{% endblock %}
+
+{% block content %}
+
+
+<div class="bg-secondary text-light mt-4 p-1 pl-4 rounded-top">
+  <h4>Chess Game Details</h4>
+</div>
+<div class="text-dark container border border-top-0">
+    <div class="row">
+      <div class="col">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item  d-flex justify-content-between align-items-center">Date:<span class="badge badge-light badge-pill">{{ game.end_time }}</span> </li>
+          <li class="list-group-item  d-flex justify-content-between align-items-center">Rated?<span class="badge badge-light badge-pill">{{ game.rated }}</span> </li>
+          <li class="list-group-item  d-flex justify-content-between align-items-center">&nbsp;</li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item  d-flex justify-content-between align-items-center">Game Format:<span class="badge badge-light badge-pill">{{ game.rules }}</span> </li>
+          <li class="list-group-item  d-flex justify-content-between align-items-center">Time Format:<span class="badge badge-light badge-pill">{{ game.time_class }}</span> </li>
+          <li class="list-group-item  d-flex justify-content-between align-items-center">&nbsp;</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item  d-flex justify-content-between align-items-center">White Player:<span class="badge badge-light badge-pill">{{ game.white_player }}</span> </li>
+          <li class="list-group-item  d-flex justify-content-between align-items-center">Rating:<span class="badge badge-light badge-pill">{{ game.white_player_rating }}</span> </li>
+          <li class="list-group-item  d-flex justify-content-between align-items-center">
+            Result:<span class="badge badge-light badge-pill">{{ game.white_player_result }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item  d-flex justify-content-between align-items-center">Black Player:<span class="badge badge-secondary badge-pill">{{ game.black_player }}</span> </li>
+          <li class="list-group-item  d-flex justify-content-between align-items-center">Rating:<span class="badge badge-secondary badge-pill">{{ game.black_player_rating }}</span> </li>
+          <li class="list-group-item  d-flex justify-content-between align-items-center">
+            Result:<span class="badge badge-secondary badge-pill">{{ game.black_player_result }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <div class="d-flex justify-content-center mb-1">
+        <table class="chess-table">
+          {% for row in game_board %}
+          <tr>
+            {% for cell in row %}
+            <td class="chess-cell {% cycle 'chess-w' 'chess-b' as rowcolors %}">{{ cell |safe }}</td>
+            {% endfor %}
+            <!-- {% cycle rowcolors %} -->
+            </tr>
+          {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}

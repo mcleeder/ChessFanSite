@@ -1,0 +1,13 @@
+.chess-cell {
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    vertical-align: center;
+}
+.chess-w {
+    background-color: rgba(200,200,200,1);
+}
+
+.chess-b {
+    background-color: rgba(100,100,100,1);
+}

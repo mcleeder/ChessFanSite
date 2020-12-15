@@ -1,0 +1,54 @@
+{% extends "ChessApp/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}Create Group of Games{% endblock %}
+
+{% block content %}
+
+
+<div class="bg-secondary text-light mt-4 p-1 pl-4 rounded-top">
+  <h4>Edit Comparison Group Id: {{ group_id }}</h4>
+</div>
+<div class="text-dark p-1 border border-top-0">
+  <form method="POST">
+    <div class="row">
+          {% csrf_token %}
+      <div class="col">{{ form.title|as_crispy_field }}</div>
+      <div class="col">
+        {{ form.player1|as_crispy_field }}
+      </div>
+      <div class="col">{{ form.player2|as_crispy_field }}</div>
+    </div>
+    <div class="row">
+      <div class="col colspan-3">
+        <button type="submit" class="btn btn-primary mt-2 mb-2" formaction="save">Save</button>
+        <button type="button" class="btn btn-danger mt-2 mb-2" data-toggle="modal" data-target="#confirmDelete">Delete</button>
+
+        <!-- DELETE CONFIRM MODAL -->
+        <div class="modal" id="confirmDelete" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Delete Group Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger" formaction="delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </div>
+  </form>
+</div>
+
+{% endblock %}

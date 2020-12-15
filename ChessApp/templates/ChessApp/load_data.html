@@ -1,0 +1,28 @@
+{% extends "ChessApp/base.html" %}
+{% load crispy_forms_tags %}
+{% crispy example_form %}
+
+{% block title %}Chess Site{% endblock %}
+
+{% block content %}
+
+
+<div class="bg-secondary text-light mt-4 p-1 pl-4 rounded-top">
+  <h4>Import Chess Games Data</h4>
+</div>
+<div class="text-dark p-1 border border-top-0">
+  <p>Chess.com packages their archived games by month.</p>
+  <p>For testing: import data for picknosepete or carlosthedwarf in early/mid 2012.</p>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div class="row">
+      <div class="col">{{ form.username|as_crispy_field }}</div>
+      <div class="col">{{ form.month|as_crispy_field }}</div>
+      <div class="col">{{ form.year|as_crispy_field }}</div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2 mb-2" formaction="load_data">Load Games</button>
+    <p class="text-warning">{{ load_status }}</p>
+  </form>
+</div>
+
+{% endblock %}

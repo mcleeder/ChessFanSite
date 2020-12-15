@@ -1,0 +1,19 @@
+{% extends "ChessApp/base.html" %}
+{% load crispy_forms_tags %}
+{% crispy example_form %}
+
+{% block title %}Chess Site{% endblock %}
+
+{% block content %}
+
+
+<div class="bg-secondary text-light mt-4 p-1 pl-4 rounded-top">
+  <h4>Chess Related Content</h4>
+</div>
+<div class="text-dark p-1 border border-top-0">
+  <p>Add Games: Import games from Chess.com. You'll need to know the Chess.com username for the player.</p>
+  <p>Compare Players: Link two players for comparison.</p>
+  <p>Statistics: View statistics for linked players. *COMING SOON*</p>
+</div>
+
+{% endblock %}
