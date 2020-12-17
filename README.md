@@ -4,11 +4,11 @@ ChessApp: A Django project.
 
 
 The Good:
-- Pulls chess game data from the Chess.com API
-- Scrapes Chess.com for news using Beautiful Soup
+- Pulls chess game data from the Chess.com API.
+- Scrapes Chess.com for news using Beautiful Soup.
 - Lets the user create groups of games for comparision, generates statistics for those groups.
-- Lets the user perform CRUD operations on their data
-- A cool method for rendering a chess board
+- Lets the user perform CRUD operations on their data.
+- A cool method for rendering a chess board final position.
 
 The Bad:
 - Minimal UI
