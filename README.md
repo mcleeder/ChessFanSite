@@ -13,4 +13,5 @@ The Good:
 The Bad:
 - Minimal UI
 - Data model needs a re-think. At the very least, I think I should be tracking the users specificlly used to import games seperately from their opponents. As it is right now, both end up being treated the same so the list of users with games in the DB gets very long very quickly.
+- The current data model also makes editing the groups of games a bit slow.
 - It would be nice to be able to query by the player being white or black pieces.
