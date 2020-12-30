@@ -4,17 +4,15 @@ A Django project.
 
 ## Introduction
 
-At The Tech Academy, for the last two weeks in every language program we work in teams on a shared project. In the Python program, that app was an Django site for housing personal collections and hobbies. It being Covid-time, we worked remotely. We used Slack, Google Meet, and daily scrum meetings to maintain group cohesion.
+I wrote this while working as an intern at Prosper IT Consulting. The overall project was a Django site for housing personal collections and hobbies. My project was an app that generated some basic comparison statistics for players at Chess.com as well as doing some web scraping for Chess-related news. It being Covid-time, we worked remotely. We used Slack, Google Meet, and daily scrum meetings to maintain group cohesion.
 
-A lot of the coding was just setting up models and views in django. If you want to see the whole show, you can [click here](https://github.com/mcleeder/ChessFanSite/tree/main/ChessApp). Following that link will take you to the code I worked on for the site, but not the entire site itself.
+### Highlights:
 
-Highlights:
+-[Chess.com API Request](README.md#chesscom-api-request)
 
--[Chess.com API Request](https://github.com/mcleeder/CodeSamples/blob/main/django_chessapp.md#chesscom-api-request)
+-[Beautiful Soup](README.md#Beautiful-Soup-web-scraper)
 
--[Beautiful Soup](https://github.com/mcleeder/CodeSamples/blob/main/django_chessapp.md#Beautiful-Soup-web-scraper)
-
--[Chess game position render](https://github.com/mcleeder/CodeSamples/blob/main/django_chessapp.md#chess-game-position-render)
+-[Chess game position render](README.md#chess-game-position-render)
 
 
 ### Chess.com API Request
