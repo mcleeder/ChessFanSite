@@ -1,6 +1,6 @@
 # ChessFanSite
  
-ChessApp: A Django project.
+A Django project.
 
 ## Introduction
 
