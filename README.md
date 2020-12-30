@@ -1,6 +1,6 @@
 # ChessFanSite
  
-A Django project.
+This code is a single app taken from a larger Django project.
 
 ## Introduction
 
