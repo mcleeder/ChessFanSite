@@ -1,6 +1,6 @@
-# ChessFanSite
+# Django App - ChessFanSite
  
-This code is a single app taken from a larger Django project.
+This code is a single app I worked on,  taken from a larger Django project.
 
 ## Introduction
 
