@@ -2,20 +2,6 @@
  
 ChessApp: A Django project.
 
-
-## The Good:
-- Pulls chess game data from the Chess.com API.
-- Scrapes Chess.com for news using Beautiful Soup.
-- Lets the user create groups of games for comparision, generates statistics for those groups.
-- Lets the user perform CRUD operations on their data.
-- A cool function for rendering a chess board final position.
-
-## The Bad:
-- Minimal UI
-- Data model needs a re-think. At the very least, I think I should be tracking the users specificlly used to import games seperately from their opponents. As it is right now, both end up being treated the same so the list of users with games in the DB gets very long very quickly.
-- The current data model also makes editing the groups of games a bit slow.
-- It would be nice to be able to query by the player being white or black pieces.
-
 ## Introduction
 
 At The Tech Academy, for the last two weeks in every language program we work in teams on a shared project. In the Python program, that app was an Django site for housing personal collections and hobbies. It being Covid-time, we worked remotely. We used Slack, Google Meet, and daily scrum meetings to maintain group cohesion.
@@ -197,3 +183,16 @@ The very last part was getting django to render the board. Again, just a loop in
           {% endfor %}
     </table>
 ```
+
+## The Good:
+- Pulls chess game data from the Chess.com API.
+- Scrapes Chess.com for news using Beautiful Soup.
+- Lets the user create groups of games for comparision, generates statistics for those groups.
+- Lets the user perform CRUD operations on their data.
+- A cool function for rendering a chess board final position.
+
+## The Bad:
+- Minimal UI
+- Data model needs a re-think. At the very least, I think I should be tracking the users specificlly used to import games seperately from their opponents. As it is right now, both end up being treated the same so the list of users with games in the DB gets very long very quickly.
+- The current data model also makes editing the groups of games a bit slow.
+- It would be nice to be able to query by the player being white or black pieces.
